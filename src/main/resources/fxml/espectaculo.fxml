@@ -3,43 +3,58 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.BlurType?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-	xmlns:fx="http://javafx.com/fxml"
+
+
+<BorderPane prefHeight="600.0" prefWidth="1000.0"
+	styleClass="background" stylesheets="@/styles/Styles.css"
+	xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.luisdbb.tarea3AD2024base.controller.EspectaculoController">
 
 	<top>
 		<VBox spacing="10.0" style="-fx-padding: 10;">
 			<Label style="-fx-font-size: 16; -fx-font-weight: bold;" />
-			<Button text="← Volver" onAction="#volver" />
+			<Button text="← Volver" onAction="#volver"
+				style="-fx-background-color: white;" textFill="#000000">
+				<effect>
+					<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+				</effect>
+			</Button>
+
 		</VBox>
 	</top>
 	<center>
-		<VBox spacing="10">
+		<VBox spacing="10" styleClass="background">
 			<padding>
 				<Insets top="10" right="10" bottom="10" left="10" />
 			</padding>
-			<TableView fx:id="tablaEspectaculos" prefHeight="250">
+			<TableView fx:id="tablaEspectaculos" prefHeight="250"
+				tableMenuButtonVisible="false">
 				<columns>
 					<TableColumn fx:id="colNombre" text="Nombre"
-						prefWidth="150" />
+						prefWidth="200" />
 					<TableColumn fx:id="colFechaInicio" text="Fecha inicio"
-						prefWidth="120" />
-					<TableColumn fx:id="colFechaFin" text="Fecha fin"
-						prefWidth="120" />
-					<TableColumn fx:id="colCoordinador" text="Coordinador"
 						prefWidth="150" />
+					<TableColumn fx:id="colFechaFin" text="Fecha fin"
+						prefWidth="150" />
+					<TableColumn fx:id="colCoordinador" text="Coordinador"
+						prefWidth="200" />
 				</columns>
+				<columnResizePolicy>
+					<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+				</columnResizePolicy>
 			</TableView>
-
-			<Separator />
 
 			<GridPane hgap="10" vgap="10">
 				<columnConstraints>
 					<ColumnConstraints halignment="RIGHT"
-						prefWidth="100" />
-					<ColumnConstraints prefWidth="250" />
+						prefWidth="120" />
+					<ColumnConstraints halignment="LEFT"
+						prefWidth="220" />
 				</columnConstraints>
+
 
 				<rowConstraints>
 					<RowConstraints minHeight="30" />
@@ -49,42 +64,72 @@
 				</rowConstraints>
 
 				<Label text="Nombre:" GridPane.rowIndex="0"
-					GridPane.columnIndex="0" />
+					GridPane.columnIndex="0" textFill="WHITE"/>
 				<TextField fx:id="txtNombre" GridPane.rowIndex="0"
-					GridPane.columnIndex="1" />
+					GridPane.columnIndex="1" prefWidth="220" />
 
 				<Label text="Fecha inicio:" GridPane.rowIndex="1"
-					GridPane.columnIndex="0" />
+					GridPane.columnIndex="0" textFill="WHITE"/>
 				<DatePicker fx:id="dateInicio" GridPane.rowIndex="1"
-					GridPane.columnIndex="1" />
+					GridPane.columnIndex="1" prefWidth="220" />
 
 				<Label text="Fecha fin:" GridPane.rowIndex="2"
-					GridPane.columnIndex="0" />
+					GridPane.columnIndex="0" textFill="WHITE"/>
 				<DatePicker fx:id="dateFin" GridPane.rowIndex="2"
-					GridPane.columnIndex="1" />
+					GridPane.columnIndex="1" prefWidth="220" />
 
 				<Label text="Coordinador:" GridPane.rowIndex="3"
-					GridPane.columnIndex="0" />
+					GridPane.columnIndex="0" textFill="WHITE"/>
 				<ComboBox fx:id="comboCoordinador" GridPane.rowIndex="3"
-					GridPane.columnIndex="1" />
+					GridPane.columnIndex="1" prefWidth="220" />
 			</GridPane>
 
 			<HBox spacing="10" alignment="CENTER_RIGHT">
 				<Button fx:id="btnNuevo" text="Nuevo"
-					onAction="#limpiarFormulario" />
+					onAction="#limpiarFormulario" style="-fx-background-color: white;">
+					<effect>
+						<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+					</effect>
+				</Button>
+
 				<Button fx:id="btnGuardar" text="Guardar"
-					onAction="#guardarEspectaculo" />
+					onAction="#guardarEspectaculo" styleClass="btnGreen"
+					textFill="WHITE">
+					<effect>
+						<DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
+					</effect>
+				</Button>
+
 				<Button fx:id="btnEliminar" text="Eliminar"
-					onAction="#eliminarEspectaculo" />
+					onAction="#eliminarEspectaculo"
+					style="-fx-background-color: white;">
+					<effect>
+						<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+					</effect>
+				</Button>
+
 				<Button fx:id="btnEditar" text="Editar"
-					onAction="#editarEspectaculo" />
+					onAction="#editarEspectaculo" style="-fx-background-color: white;">
+					<effect>
+						<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+					</effect>
+				</Button>
+
 				<Button fx:id="btnNumeros" text="Gestionar Números"
-					onAction="#abrirNumeros" />
+					onAction="#abrirNumeros" style="-fx-background-color: white;">
+					<effect>
+						<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+					</effect>
+				</Button>
+
 				<Button fx:id="btnDetalles" text="Ver detalles"
-					onAction="#onVerDetalles" />
-
-
+					onAction="#onVerDetalles" style="-fx-background-color: white;">
+					<effect>
+						<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+					</effect>
+				</Button>
 			</HBox>
+
 		</VBox>
 	</center>
 

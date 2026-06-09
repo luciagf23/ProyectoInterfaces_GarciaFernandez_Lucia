@@ -22,4 +22,7 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
 	List<Persona> findAllWithEspecialidades();
 
 	List<Persona> findAllByOrderByIdAsc();
+
+	Persona findByEmail(String email);
+
 }

@@ -21,7 +21,7 @@ public interface NumeroRepository extends JpaRepository<Numero, Long> {
 			    WHERE n.espectaculo.id = :id
 			    ORDER BY n.orden
 			""")
-	List<Numero> findByEspectaculoIdOrderByOrden(Long espectaculoId);
+	List<Numero> findByEspectaculoIdOrderByOrden(@Param("id") Long espectaculoId);
 
 	@Query("""
 			SELECT DISTINCT n
@@ -31,23 +31,22 @@ public interface NumeroRepository extends JpaRepository<Numero, Long> {
 			ORDER BY n.orden
 			""")
 	List<Numero> findByEspectaculo(@Param("id") Long id);
-	
-	@Query("""
-		    SELECT n 
-		    FROM Numero n 
-		    LEFT JOIN FETCH n.artistas 
-		    WHERE n.id = :id
-		""")
-		Numero findByIdConArtistas(Long id);
 
+	@Query("""
+			    SELECT n
+			    FROM Numero n
+			    LEFT JOIN FETCH n.artistas
+			    WHERE n.id = :id
+			""")
+	Numero findByIdConArtistas(Long id);
 
 	boolean existsByEspectaculoAndOrden(Espectaculo espectaculo, Integer orden);
 
 	boolean existsByEspectaculoAndOrdenAndIdNot(Espectaculo espectaculo, Integer orden, Long id);
 
 	long countByEspectaculoId(Long espectaculoId);
-	
+
 	List<Numero> findByArtistasId(Long artistaId);
-	
+
 	List<Numero> findByArtistasContains(Artista artista);
 }

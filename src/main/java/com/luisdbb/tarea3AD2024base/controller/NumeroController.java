@@ -99,6 +99,12 @@ public class NumeroController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		espectaculoActual = sesionService.getEspectaculoActual();
 
+		
+		if (espectaculoActual == null) {
+			mostrarError("No se ha seleccionado ningún espectáculo");
+			return;
+		}
+
 		lblEspectaculo.setText("Espectáculo: " + espectaculoActual.getNombre());
 
 		colOrden.setCellValueFactory(new PropertyValueFactory<>("orden"));

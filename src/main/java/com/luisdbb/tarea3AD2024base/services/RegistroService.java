@@ -22,14 +22,9 @@ public class RegistroService {
 		persona.setEmail(persona.getEmail().toLowerCase());
 
 		validarDatosPersona(persona);
-
-		// validar email solo al crear
-		if (persona.getId() == null) {
-			validarEmailUnico(persona.getEmail());
-		}
+		validarEmail(persona);
 
 		
-
 		if (persona instanceof Coordinacion c) {
 			validarCoordinacion(c);
 		}
@@ -53,23 +48,43 @@ public class RegistroService {
 		// Guardar credencial
 		credencial.setPersona(guardada);
 		guardada.setCredencial(credencial);
-		
+
 		credencialRepository.save(credencial);
 
 		return guardada;
 	}
 
 	// VALIDACIONES
-	private void validarDatosPersona(Persona p) {
-		if (p.getNombre() == null || p.getNombre().isBlank() || p.getEmail() == null || p.getEmail().isBlank()
-				|| p.getNacionalidad() == null || p.getNacionalidad().isBlank()) {
+	private void validarDatosPersona(Persona persona) {
+		if (persona.getNombre() == null || persona.getNombre().isBlank() || persona.getEmail() == null
+				|| persona.getEmail().isBlank() || persona.getNacionalidad() == null
+				|| persona.getNacionalidad().isBlank()) {
 
 			throw new RuntimeException("Faltan datos personales obligatorios");
 		}
+		if (persona.getNombre() == null || persona.getNombre().isBlank()) {
+			throw new RuntimeException("El nombre es obligatorio");
+		}
+		if (persona.getEmail() == null || persona.getEmail().isBlank()) {
+			throw new RuntimeException("El email es obligatorio");
+		}
+		if (!persona.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+			throw new RuntimeException("El formato del email no es válido");
+		}
+		if (persona.getNacionalidad() == null || persona.getNacionalidad().isBlank()) {
+			throw new RuntimeException("La nacionalidad es obligatoria");
+		}
+
 	}
 
-	private void validarEmailUnico(String email) {
-		if (personaRepository.existsByEmail(email.toLowerCase())) {
+	private void validarEmail(Persona persona) {
+
+		String email = persona.getEmail().toLowerCase();
+
+		Persona existente = personaRepository.findByEmail(email);
+
+		// Si existe otro usuario con ese email
+		if (existente != null && !existente.getId().equals(persona.getId())) {
 			throw new RuntimeException("Email ya registrado");
 		}
 	}
@@ -97,8 +112,6 @@ public class RegistroService {
 
 		cred.setUsername(username.toLowerCase());
 	}
-
-
 
 	private void validarCoordinacion(Coordinacion c) {
 		if (c.isSenior() && c.getFechaSenior() == null) {

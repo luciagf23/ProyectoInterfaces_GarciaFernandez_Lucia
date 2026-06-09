@@ -1,5 +1,6 @@
 package com.luisdbb.tarea3AD2024base.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class EspectaculoService {
 		validarFechas(espectaculo);
 		validarDuracionMaxima(espectaculo);
 		validarCoordinador(espectaculo);
-		
 
 		return espectaculoRepository.save(espectaculo);
 	}
@@ -60,8 +60,26 @@ public class EspectaculoService {
 	}
 
 	private void validarFechas(Espectaculo e) {
-		if (e.getFechaInicio().isAfter(e.getFechaFin())) {
-			throw new RuntimeException("La fecha de inicio debe ser anterior a la fecha de fin");
+		if (e.getFechaInicio() == null || e.getFechaFin() == null) {
+			throw new RuntimeException("Debe indicar fecha de inicio y fin");
+		}
+
+		LocalDate inicio = e.getFechaInicio();
+		LocalDate fin = e.getFechaFin();
+
+		// No permitir fechas pasadas
+		if (inicio.isBefore(LocalDate.now())) {
+			throw new RuntimeException("La fecha de inicio no puede ser anterior a hoy");
+		}
+
+		// No permitir periodo mayor a 1 año
+		if (fin.isAfter(inicio.plusYears(1))) {
+			throw new RuntimeException("El periodo del espectáculo no puede superar un año");
+		}
+
+		// No permitir fin antes que inicio
+		if (fin.isBefore(inicio)) {
+			throw new RuntimeException("La fecha de fin no puede ser anterior a la fecha de inicio");
 		}
 	}
 

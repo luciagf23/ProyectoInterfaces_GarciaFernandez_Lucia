@@ -190,27 +190,35 @@ public class EspectaculoController implements Initializable {
 			throw new RuntimeException("El nombre no puede superar los 25 caracteres");
 		}
 
-		// Fecha fin posterior a fecha inicio
-		if (dateFin.getValue().isAfter(dateInicio.getValue().plusYears(1))) {
-			throw new RuntimeException("El periodo no puede ser superior a 1 año");
-		}
+		LocalDate inicio = dateInicio.getValue();
+	    LocalDate fin = dateFin.getValue();
 
-		// Periodo no superior a 1 año
-		if (dateFin.getValue().isAfter(dateInicio.getValue().plusYears(1))) {
-			throw new RuntimeException("El periodo no puede ser superior a 1 año");
-		}
+	    // Inicio no puede ser anterior a hoy
+	    if (inicio.isBefore(LocalDate.now())) {
+	        throw new RuntimeException("La fecha de inicio no puede ser anterior a hoy");
+	    }
 
-		// Nombre único
-		if (espectaculoEditando == null) {
-			if (espectaculoService.existsByNombre(txtNombre.getText().trim())) {
-				throw new RuntimeException("Ya existe un espectáculo con ese nombre");
-			}
-		} else {
-			if (!espectaculoEditando.getNombre().equalsIgnoreCase(txtNombre.getText().trim())
-					&& espectaculoService.existsByNombre(txtNombre.getText().trim())) {
-				throw new RuntimeException("Ya existe un espectáculo con ese nombre");
-			}
-		}
+	    // Fin no puede ser anterior a inicio
+	    if (fin.isBefore(inicio)) {
+	        throw new RuntimeException("La fecha de fin no puede ser anterior a la fecha de inicio");
+	    }
+
+	    // Periodo máximo 1 año
+	    if (fin.isAfter(inicio.plusYears(1))) {
+	        throw new RuntimeException("El periodo no puede ser superior a 1 año");
+	    }
+
+	    // Nombre único
+	    if (espectaculoEditando == null) {
+	        if (espectaculoService.existsByNombre(txtNombre.getText().trim())) {
+	            throw new RuntimeException("Ya existe un espectáculo con ese nombre");
+	        }
+	    } else {
+	        if (!espectaculoEditando.getNombre().equalsIgnoreCase(txtNombre.getText().trim())
+	                && espectaculoService.existsByNombre(txtNombre.getText().trim())) {
+	            throw new RuntimeException("Ya existe un espectáculo con ese nombre");
+	        }
+	    }
 	}
 
 	private Espectaculo construirEspectaculoDesdeFormulario() {
@@ -319,6 +327,7 @@ public class EspectaculoController implements Initializable {
 	@FXML
 	private void abrirNumeros(ActionEvent event) {
 		Espectaculo seleccionado = tablaEspectaculos.getSelectionModel().getSelectedItem();
+		
 		if (seleccionado == null) {
 			mostrarError("Selecciona un espectáculo primero");
 			return;

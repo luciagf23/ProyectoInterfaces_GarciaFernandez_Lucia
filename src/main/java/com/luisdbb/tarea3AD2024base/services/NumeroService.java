@@ -28,6 +28,11 @@ public class NumeroService {
 	}
 
 	public List<Numero> findByEspectaculo(Long espectaculoId) {
+		if (espectaculoId == null) {
+			System.out.println("ERROR: espectaculoId es null");
+			return List.of();
+		}
+
 		return numeroRepository.findByEspectaculoIdOrderByOrden(espectaculoId);
 	}
 

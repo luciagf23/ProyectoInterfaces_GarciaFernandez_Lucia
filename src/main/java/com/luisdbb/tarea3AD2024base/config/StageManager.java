@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Manages switching Scenes on the Primary Stage
@@ -49,9 +50,9 @@ public class StageManager {
 
 	private void show(final Parent rootnode, String title) {
 		Scene scene = prepareScene(rootnode);
-		// scene.getStylesheets().add("/styles/Styles.css");
+		//scene.getStylesheets().add("/styles/Styles.css");
 
-		// primaryStage.initStyle(StageStyle.TRANSPARENT);
+		//primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setTitle(title);
 		primaryStage.setScene(scene);
 		primaryStage.sizeToScene();
@@ -95,7 +96,8 @@ public class StageManager {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setControllerFactory(springFXMLLoader.getContext()::getBean);
 			loader.setResources(ResourceBundle.getBundle("Bundle"));
-			var url = getClass().getResource(fxmlFilePath);
+			var url = springFXMLLoader.getContext().getResource(fxmlFilePath).getURL();
+
 			System.out.println(">>> URL: " + url);
 			loader.setLocation(url);
 			Parent root = loader.load();
@@ -118,7 +120,7 @@ public class StageManager {
 				c.setStageManager(this);
 			}
 			if (controller instanceof FichaArtistaController c) {
-			    c.setStageManager(this);
+				c.setStageManager(this);
 			}
 
 			return root;

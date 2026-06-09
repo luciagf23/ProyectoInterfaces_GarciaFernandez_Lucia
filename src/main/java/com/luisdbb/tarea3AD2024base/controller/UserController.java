@@ -118,6 +118,9 @@ public class UserController implements Initializable {
 	private Button gestionEspectaculos;
 
 	@FXML
+	private Button guardaButton;
+
+	@FXML
 	private Button btnDetalles;
 
 	@FXML
@@ -146,6 +149,9 @@ public class UserController implements Initializable {
 
 	@FXML
 	private MenuItem deleteUsers;
+
+	@FXML
+	private MenuItem verEspectaculos;
 
 	private StageManager stageManager;
 
@@ -178,7 +184,7 @@ public class UserController implements Initializable {
 	}
 
 	@FXML
-	private void exit(ActionEvent event) {
+	private void salir(ActionEvent event) {
 		Platform.exit();
 	}
 
@@ -304,6 +310,13 @@ public class UserController implements Initializable {
 					especialidades.add(Especialidad.MALABARISMO);
 				artista.setEspecialidades(especialidades);
 
+				if (especialidades.isEmpty()) {
+					mostrarError("Debe seleccionar al menos una especialidad");
+					return;
+				}
+
+				artista.setEspecialidades(especialidades);
+
 				persona = artista;
 
 			} else {
@@ -342,6 +355,10 @@ public class UserController implements Initializable {
 					if (personaRepository.existsByEmail(persona.getEmail().toLowerCase())) {
 						throw new RuntimeException("El email ya existe");
 					}
+				}
+				if (!email.getText().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+					mostrarError("El formato del email no es válido");
+					return;
 				}
 			}
 
@@ -384,6 +401,8 @@ public class UserController implements Initializable {
 
 		loadUserDetails();
 	}
+	
+
 
 	@FXML
 	private void onGestionarEspecialidades(ActionEvent event) {
@@ -401,7 +420,6 @@ public class UserController implements Initializable {
 		}
 	}
 
-	
 	private void clearFields() {
 		personaEditando = null;
 		nombre.clear();
@@ -436,7 +454,8 @@ public class UserController implements Initializable {
 	 * mostrarError("No se pudo abrir la ventana de espectáculos"); } }
 	 * 
 	 */
-
+	
+	
 	@FXML
 	private void abrirEspectaculos(ActionEvent event) {
 		stageManager.switchScene(FxmlView.ESPECTACULOS);

@@ -4,11 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.Credencial;
-import com.luisdbb.tarea3AD2024base.modelo.Rol;
 import com.luisdbb.tarea3AD2024base.services.CredencialService;
 import com.luisdbb.tarea3AD2024base.services.SesionService;
 import com.luisdbb.tarea3AD2024base.services.UserService;
@@ -32,6 +32,9 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private Button btnLogin;
+	
+	@FXML 
+	private Button btnInvitado;
 
 	@FXML
 	private PasswordField password;
@@ -53,30 +56,54 @@ public class LoginController implements Initializable {
 	@Autowired
 	private SesionService sesionService;
 
+	@Value("${admin.user}")
+	private String adminUser;
+
+	@Value("${admin.password}")
+	private String adminPassword;
+
 	public void setStageManager(StageManager stageManager) {
 		this.stageManager = stageManager;
 	}
 
 	@FXML
 	private void login(ActionEvent event) {
+
 		try {
+
+			// Login administrador
+			if (getUsername().equals(adminUser) && getPassword().equals(adminPassword)) {
+
+				stageManager.switchScene(FxmlView.USER);
+				return;
+			}
+
+			// Login usuarios normales
 			if (userService.authenticate(getUsername(), getPassword())) {
 
-				if (getUsername().equals("admin")) {
-					stageManager.switchScene(FxmlView.USER);
-				} else {
-					Credencial credencial = credencialService.findByUsername(getUsername());
-					sesionService.setUsuarioActual(credencial);
+				Credencial credencial = credencialService.findByUsername(getUsername());
 
-					if (credencial.getRol() == Rol.ARTISTA) {
-						stageManager.switchScene(FxmlView.FICHAARTISTA);
-					} else if (credencial.getRol() == Rol.COORDINACION) {
-						stageManager.switchScene(FxmlView.ESPECTACULOS);
-					}
+				sesionService.setUsuarioActual(credencial);
+
+				switch (credencial.getRol()) {
+
+				case ARTISTA:
+					stageManager.switchScene(FxmlView.FICHAARTISTA);
+					break;
+
+				case COORDINACION:
+					stageManager.switchScene(FxmlView.ESPECTACULOS);
+					break;
+
+				default:
+					lblLogin.setText("Rol no válido.");
+					break;
 				}
+
 			} else {
-				lblLogin.setText("Login Failed.");
+				lblLogin.setText("Usuario o contraseña incorrectos.");
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			lblLogin.setText("Error: " + e.getMessage());

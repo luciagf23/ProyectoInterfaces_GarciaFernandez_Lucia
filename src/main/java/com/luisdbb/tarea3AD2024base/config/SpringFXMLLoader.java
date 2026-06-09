@@ -1,7 +1,6 @@
 package com.luisdbb.tarea3AD2024base.config;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,21 +29,22 @@ public class SpringFXMLLoader {
 		loader.setControllerFactory(context::getBean);
 		loader.setResources(resourceBundle);
 
-		var url = getClass().getResource(fxmlPath);
+		var url = context.getResource(fxmlPath).getURL();
+
 		System.out.println("FXML URL: " + url);
 
 		loader.setLocation(url);
-		
+
 		try {
-	        return loader.load();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        throw e;
-	    }
+			return loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	public ApplicationContext getContext() {
-	    return context;
+		return context;
 	}
 
 }

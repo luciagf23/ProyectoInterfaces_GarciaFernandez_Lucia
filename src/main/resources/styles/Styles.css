@@ -1,9 +1,25 @@
 /* CSS for app */
 
-.btnGreen{
-	-fx-background-color:  #3cbc53;
+.btnGreen {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(one-pass-box, #1965d0, 5, 0, 0, 0);
+}
+.btnBlue {
+    -fx-background-color: #1965d0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(one-pass-box, #6468b2, 5, 0, 0, 0);
 }
 
 .background {
-    -fx-background-color: #2C3E50;
+    -fx-background-color:#2a3b4c;
 }
+
+.table-view {
+    -fx-padding: 0.0;
+    -fx-border-insets: 0.0;
+    -fx-background-insets: 0.0;
+}
+

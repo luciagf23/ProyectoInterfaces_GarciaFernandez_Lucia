@@ -24,32 +24,35 @@
 			</font>
 		</Label>
 		<TextField fx:id="username" layoutX="98.0" layoutY="92.0"
-			prefHeight="36.0" prefWidth="204.0" promptText="Username" />
+			prefHeight="36.0" prefWidth="204.0" promptText="Nombre de usuario" />
 		<PasswordField fx:id="password" layoutX="98.0"
 			layoutY="141.0" onAction="#login" prefHeight="36.0" prefWidth="204.0"
-			promptText="Password" />
+			promptText="Contraseña" />
 		<Button fx:id="btnLogin" layoutX="215.0" layoutY="193.0"
 			mnemonicParsing="false" onAction="#login" prefHeight="30.0"
-			prefWidth="86.0" styleClass="btnGreen" text="Sign In"
+			prefWidth="100.0" styleClass="btnGreen" text="Iniciar sesión"
 			textFill="WHITE">
-			
-			
+
+
 			<font>
-				<Font size="15.0" />
+				<Font size="13.0" />
 			</font>
 			<effect>
-				<DropShadow blurType="ONE_PASS_BOX" />
+				<DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
 			</effect>
 		</Button>
-		
-		<Button layoutX="80.0" layoutY="193.0" mnemonicParsing="false"
-				onAction="#verEspectaculos" prefHeight="30.0" prefWidth="120.0"
-				text="Ver Espectáculos" textFill="WHITE"
-				style="-fx-background-color: #1a6bbd;">
-				<font>
-					<Font size="13.0" />
-				</font>
-			</Button>
+
+		<Button fx:id="btnInvitado" layoutX="80.0" layoutY="193.0"
+			mnemonicParsing="false" onAction="#verEspectaculos" prefHeight="30.0"
+			prefWidth="120.0" styleClass="btnBlue" text="Ver Espectáculos"
+			textFill="WHITE">
+			<font>
+				<Font size="13.0" />
+			</font>
+			<effect>
+				<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+			</effect>
+		</Button>
 	</children>
 	<opaqueInsets>
 		<Insets />
