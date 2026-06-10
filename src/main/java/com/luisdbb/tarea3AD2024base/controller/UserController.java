@@ -11,6 +11,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -31,7 +33,6 @@ import com.luisdbb.tarea3AD2024base.services.PersonaService;
 import com.luisdbb.tarea3AD2024base.services.RegistroService;
 import com.luisdbb.tarea3AD2024base.services.ReportService;
 import com.luisdbb.tarea3AD2024base.services.SesionService;
-import com.luisdbb.tarea3AD2024base.util.MiConexion;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import javafx.application.Platform;
@@ -178,6 +179,10 @@ public class UserController implements Initializable {
 	private ArtistaRepository artistaRepository;
 	
 	private  ReportService reportService;
+	
+	@Autowired
+	private DataSource dataSource;
+
 
 	@Autowired
 	private SesionService sesionService;
@@ -521,7 +526,7 @@ public class UserController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		reportService=new ReportService(MiConexion.getDataSource());
+		reportService = new ReportService(dataSource);
 		tipoPersona.setItems(roles);
 
 		userTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

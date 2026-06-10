@@ -33,27 +33,27 @@
 	<top>
 		<MenuBar BorderPane.alignment="TOP_LEFT">
 			<menus>
-				<Menu mnemonicParsing="false" text="Archivo">
+				<Menu mnemonicParsing="true" text="_Archivo">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#salir"
-							text="Salir" />
+						<MenuItem mnemonicParsing="true" onAction="#salir"
+							text="_Salir" />
 					</items>
 				</Menu>
-				<Menu mnemonicParsing="false" text="Editar">
+				<Menu mnemonicParsing="true" text="_Editar">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Eliminar" />
+						<MenuItem mnemonicParsing="true" text="_Eliminar" />
 					</items>
 				</Menu>
-				<Menu mnemonicParsing="false" text="Ayuda">
+				<Menu mnemonicParsing="true" text="_Ayuda">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Ayuda"
+						<MenuItem mnemonicParsing="true" text="_Ayuda"
 							onAction="#onAyuda" />
 					</items>
 
 				</Menu>
-				<Menu mnemonicParsing="false" text="Espectaculos">
+				<Menu mnemonicParsing="true" text="_Espectaculos">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Ver espectáculos"
+						<MenuItem mnemonicParsing="true" text="_Ver espectáculos"
 							onAction="#abrirEspectaculos" />
 					</items>
 				</Menu>

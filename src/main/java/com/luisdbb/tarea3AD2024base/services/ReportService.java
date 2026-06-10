@@ -1,16 +1,18 @@
 package com.luisdbb.tarea3AD2024base.services;
 
 import javax.sql.DataSource;
+
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
 
 public class ReportService {
 
@@ -48,10 +50,10 @@ public class ReportService {
 	// INFORME ESTADÍSTICO
 	public void generarInformeEstadistico() {
 		try {
-			InputStream jrxml = getClass().getResourceAsStream("/reports/artistas_especialidades.jrxml");
+			InputStream jrxml = getClass().getResourceAsStream("/reports/artistas_especialidad.jrxml");
 
 			if (jrxml == null) {
-				System.out.println("NO SE ENCUENTRA EL JRXML: artistas_especialidades.jrxml");
+				System.out.println("NO SE ENCUENTRA EL JRXML: artistas_especialidad.jrxml");
 				return;
 			}
 
@@ -59,7 +61,7 @@ public class ReportService {
 
 			JasperPrint print = JasperFillManager.fillReport(report, null, dataSource.getConnection());
 
-			JasperExportManager.exportReportToPdfFile(print, "artistas_especialidades.pdf");
+			JasperExportManager.exportReportToPdfFile(print, "artistas_especialidad.pdf");
 
 		} catch (Exception e) {
 			e.printStackTrace();

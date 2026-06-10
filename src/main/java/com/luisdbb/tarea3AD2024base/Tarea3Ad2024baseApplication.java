@@ -18,13 +18,11 @@ public class Tarea3Ad2024baseApplication extends Application {
 
 	protected ConfigurableApplicationContext springContext;
 	protected StageManager stageManager;
-	
 
 	@Override
 	public void init() throws Exception {
-		 springContext = new SpringApplicationBuilder(Tarea3Ad2024baseApplication.class).run();
-    }
-	
+		springContext = new SpringApplicationBuilder(Tarea3Ad2024baseApplication.class).run();
+	}
 
 	public static void main(final String[] args) {
 		Application.launch(args);
@@ -32,21 +30,18 @@ public class Tarea3Ad2024baseApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-	   
-	    stageManager = springContext.getBean(StageManager.class);
-	    
-	    stageManager.setPrimaryStage(primaryStage);
-	    
-	    stageManager.switchScene(FxmlView.LOGIN);
 
+		stageManager = springContext.getBean(StageManager.class);
+
+		stageManager.setPrimaryStage(primaryStage);
+
+		stageManager.switchScene(FxmlView.LOGIN);
 
 	}
 
-	 @Override
-	    public void stop() throws Exception {
-	        springContext.close();
-	    }
+	@Override
+	public void stop() throws Exception {
+		springContext.close();
+	}
 
-	
 }
