@@ -119,7 +119,6 @@ public class EspectaculoService {
 	}
 
 	public List<Espectaculo> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		 return espectaculoRepository.findAll();
 	}
 }

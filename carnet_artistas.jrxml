@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carnet_artista" pageWidth="400" pageHeight="250" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d04adf9d-cc9f-4a73-a489-8220ca596fe5">
+	<parameter name="id_artista" class="java.lang.Long"/>
+	<parameter name="fecha_emision" class="java.sql.Date"/>
+	<queryString>
+		<![CDATA[SELECT 
+            p.id,
+            p.nombre,
+            a.apodo,
+            p.nacionalidad,
+            p.email,
+            GROUP_CONCAT(e.especialidades SEPARATOR ', ') AS especialidades
+        FROM persona p
+        LEFT JOIN artista a ON p.id = a.id
+        LEFT JOIN artista_especialidades e ON a.id = e.artista_id
+        WHERE p.id = $P{id_artista}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apodo" class="java.lang.String"/>
+	<field name="nacionalidad" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="especialidades" class="java.lang.String"/>
+	<title>
+		<band height="40">
+			<staticText>
+				<reportElement x="0" y="0" width="360" height="30" uuid="f9b1f632-e91f-415a-94ee-efb0cb96ed88"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARNET DEL ARTISTA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="190">
+			<rectangle>
+				<reportElement x="0" y="0" width="360" height="190" uuid="2dcf0adc-8edb-4f7d-aff2-a778cf26f9bc"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="15" y="15" width="120" height="20" uuid="4a56db0c-bb2b-48c1-baac-a256c27ca2c6"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="15" width="200" height="20" uuid="0b54365b-0b18-4be9-a572-db6edfa836c0"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="40" width="120" height="20" uuid="34395367-b564-4dcd-a465-ba047b888c0c"/>
+				<text><![CDATA[Apodo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="40" width="200" height="20" uuid="80e9bffd-f647-457c-81ec-f04739d1111f"/>
+				<textFieldExpression><![CDATA[$F{apodo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="65" width="120" height="20" uuid="eb2265f6-dd39-4a79-a4f1-0cdb1bf18e7f"/>
+				<text><![CDATA[Nacionalidad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="65" width="200" height="20" uuid="52219ef0-b738-4865-8435-8add6cd5f565"/>
+				<textFieldExpression><![CDATA[$F{nacionalidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="90" width="120" height="20" uuid="5157923f-8327-49e0-ad29-fb9f54ad4a34"/>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="90" width="200" height="20" uuid="032a96b2-d0f5-431d-be10-0d519a982fd0"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="115" width="120" height="20" uuid="fa691f36-58fc-4685-a9a5-5c4e7d63159f"/>
+				<text><![CDATA[Especialidades:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="115" width="200" height="20" uuid="e2fa1808-9a37-4417-9d43-5383c87e342a"/>
+				<textFieldExpression><![CDATA[$F{especialidades}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="140" width="120" height="20" uuid="94473556-ccf1-46f4-9fd9-4040f259fc31"/>
+				<text><![CDATA[Fecha emisión:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="140" width="200" height="20" uuid="8d464be1-731a-4956-a529-beaa0f2e0ba9"/>
+				<textFieldExpression><![CDATA[$P{fecha_emision}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="165" width="120" height="20" uuid="d0b89125-6f5d-49e0-81c0-30c793f3fd2e"/>
+				<text><![CDATA[ID Artista:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="165" width="200" height="20" uuid="a991b997-8ddf-473c-9f9c-b00a81f52348"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

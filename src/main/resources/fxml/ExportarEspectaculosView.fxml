@@ -1,6 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+
 <VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.luisdbb.tarea3AD2024base.controller.ExportarEspectaculosController"
+      fx:controller="com.luisdbb.tarea3AD2024base.controller.ExportarEspectaculoController"
       style="-fx-padding: 20;">
 
     <Label text="Exportar espectáculos a TXT" style="-fx-font-size: 18;" />

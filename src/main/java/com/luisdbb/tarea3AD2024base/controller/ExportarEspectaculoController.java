@@ -4,6 +4,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import com.luisdbb.tarea3AD2024base.modelo.Espectaculo;
 import com.luisdbb.tarea3AD2024base.services.EspectaculoService;
 
@@ -13,12 +16,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+@Controller
 public class ExportarEspectaculoController {
+
+	@Autowired
+	private EspectaculoService espectaculoService;
 
 	@FXML
 	private TextField txtRuta;
 
-	private final EspectaculoService espectaculoService;
+	public ExportarEspectaculoController() {
+	}
 
 	public ExportarEspectaculoController(EspectaculoService espectaculoService) {
 		this.espectaculoService = espectaculoService;
@@ -52,7 +60,10 @@ public class ExportarEspectaculoController {
 			// 3. Construir el contenido del TXT
 			StringBuilder sb = new StringBuilder();
 			for (Espectaculo e : lista) {
-				sb.append(e.getNombre()).append(" - ").append(e.getFechaInicio()).append("\n");
+				sb.append("Espectáculo: ").append(e.getNombre()).append("\n").append("Fecha inicio: ")
+						.append(e.getFechaInicio()).append("\n").append("Fecha fin: ").append(e.getFechaFin())
+						.append("\n\n");
+
 			}
 
 			// 4. Guardar el archivo
