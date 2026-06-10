@@ -2,6 +2,7 @@ package com.luisdbb.tarea3AD2024base.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,9 @@ import com.luisdbb.tarea3AD2024base.repositorios.PersonaRepository;
 import com.luisdbb.tarea3AD2024base.modelo.Persona;
 import com.luisdbb.tarea3AD2024base.services.PersonaService;
 import com.luisdbb.tarea3AD2024base.services.RegistroService;
+import com.luisdbb.tarea3AD2024base.services.ReportService;
 import com.luisdbb.tarea3AD2024base.services.SesionService;
+import com.luisdbb.tarea3AD2024base.util.MiConexion;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import javafx.application.Platform;
@@ -173,6 +176,8 @@ public class UserController implements Initializable {
 
 	@Autowired
 	private ArtistaRepository artistaRepository;
+	
+	private  ReportService reportService;
 
 	@Autowired
 	private SesionService sesionService;
@@ -516,6 +521,7 @@ public class UserController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		reportService=new ReportService(MiConexion.getDataSource());
 		tipoPersona.setItems(roles);
 
 		userTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -701,6 +707,18 @@ public class UserController implements Initializable {
 		HelpUtil.mostrarAyuda();
 	}
 
+	@FXML
+	private void onGenerarCarnet() {
+        Long idArtista = 3L; 
+        Date fecha = new Date();
+        reportService.generarCarnetArtista(idArtista, fecha);
+    }
+
+    // BOTÓN: Generar Informe Estadístico
+    @FXML
+    private void onGenerarEstadistico() {
+        reportService.generarInformeEstadistico();
+    }
 	
 
 }

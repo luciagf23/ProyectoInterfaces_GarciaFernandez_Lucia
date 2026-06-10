@@ -8,8 +8,7 @@
     e.especialidades AS especialidad,
     COUNT(*) AS total_artistas
 FROM artista_especialidades e
-GROUP BY e.especialidades;
-]]>
+GROUP BY e.especialidades;]]>
 	</queryString>
 	<field name="especialidad" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="especialidades"/>
@@ -24,16 +23,52 @@ GROUP BY e.especialidades;
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="24" width="260" height="36" forecolor="#F23633" uuid="8de1ca5b-ed5a-41f3-bc63-d4aaf4f94539">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Artistas por especialidad"]]></textFieldExpression>
+			</textField>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="a04a40f7-d33a-4805-8d22-6883a41c5a20">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="174f6587-ef22-4050-a8e3-bdaed0709ab8"/>
+				</reportElement>
+				<text><![CDATA[Especialidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="100" height="30" uuid="12f57386-e9ec-4d82-82a5-dbfa6f15fd59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="041cb7d0-6e3a-47d5-a306-d68f4a0a5aac"/>
+				</reportElement>
+				<text><![CDATA[Total artistas]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="50" width="100" height="30" uuid="1048c96e-6bda-4533-91c9-d66532b88ada">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="174f6587-ef22-4050-a8e3-bdaed0709ab8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{especialidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="47" width="100" height="30" uuid="6d0a6c38-9d2d-4f67-ae4d-c733ef9b22b1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="041cb7d0-6e3a-47d5-a306-d68f4a0a5aac"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{total_artistas}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

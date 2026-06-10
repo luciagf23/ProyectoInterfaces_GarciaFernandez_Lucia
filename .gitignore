@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /carnet_artistas.jasper
+/artistas_especialidad.jasper

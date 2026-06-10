@@ -163,8 +163,16 @@
 						onAction="#saveUser" styleClass="btnGreen" textFill="WHITE" />
 					<Button fx:id="deleteButton" text="Eliminar" prefWidth="80"
 						onAction="#deleteUsers" />
-
+				</HBox>		
+						
+				<HBox spacing="10" alignment="CENTER">
+					<Button text="Carnet del Artista"
+						onAction="#onGenerarCarnet" />
+					<Button text="Informe Estadístico"
+						onAction="#onGenerarEstadistico" />
 				</HBox>
+
+				
 
 			</children>
 

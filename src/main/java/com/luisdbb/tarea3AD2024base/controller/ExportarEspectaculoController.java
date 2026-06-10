@@ -1,7 +1,6 @@
 package com.luisdbb.tarea3AD2024base.controller;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 @Controller
 public class ExportarEspectaculoController {
@@ -36,7 +39,7 @@ public class ExportarEspectaculoController {
 	private void onExaminar() {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Guardar archivo");
-		chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT", "*.txt"));
+		chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
 
 		File file = chooser.showSaveDialog(null);
 		if (file != null) {
@@ -57,20 +60,24 @@ public class ExportarEspectaculoController {
 			// 2. Obtener todos los espectáculos
 			List<Espectaculo> lista = espectaculoService.findAll();
 
-			// 3. Construir el contenido del TXT
-			StringBuilder sb = new StringBuilder();
-			for (Espectaculo e : lista) {
-				sb.append("Espectáculo: ").append(e.getNombre()).append("\n").append("Fecha inicio: ")
-						.append(e.getFechaInicio()).append("\n").append("Fecha fin: ").append(e.getFechaFin())
-						.append("\n\n");
+			// 3. Crear PDF con iText
+			com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+			com.itextpdf.text.pdf.PdfWriter.getInstance(document, new java.io.FileOutputStream(txtRuta.getText()));
 
+			document.open();
+			document.add(new com.itextpdf.text.Paragraph("LISTADO DE ESPECTÁCULOS\n\n"));
+
+			for (Espectaculo e : lista) {
+				document.add(new com.itextpdf.text.Paragraph("Espectáculo: " + e.getNombre()));
+				document.add(new com.itextpdf.text.Paragraph("Fecha inicio: " + e.getFechaInicio()));
+				document.add(new com.itextpdf.text.Paragraph("Fecha fin: " + e.getFechaFin()));
+				document.add(new com.itextpdf.text.Paragraph("\n-----------------------------\n"));
 			}
 
-			// 4. Guardar el archivo
-			Files.writeString(new File(txtRuta.getText()).toPath(), sb.toString());
+			document.close();
 
-			// 5. Mensaje opcional
-			mostrarInfo("Espectáculos exportados correctamente.");
+			// 4. Mensaje opcional
+			mostrarInfo("PDF generado correctamente.");
 
 			// 6. Cerrar ventana
 			cerrar();
