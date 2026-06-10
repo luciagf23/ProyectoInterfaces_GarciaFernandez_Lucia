@@ -1,31 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carnet_artista" pageWidth="400" pageHeight="250" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d04adf9d-cc9f-4a73-a489-8220ca596fe5">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carnet_artista" pageWidth="400" pageHeight="250" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a50c249a-82aa-4748-91a9-80d6904b5e6f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_TareaInterfaces"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="id_artista" class="java.lang.Long"/>
 	<parameter name="fecha_emision" class="java.sql.Date"/>
-	<queryString>
+	<queryString language="SQL">
 		<![CDATA[SELECT 
-            p.id,
-            p.nombre,
-            a.apodo,
-            p.nacionalidad,
-            p.email,
-            GROUP_CONCAT(e.especialidades SEPARATOR ', ') AS especialidades
-        FROM persona p
-        LEFT JOIN artista a ON p.id = a.id
-        LEFT JOIN artista_especialidades e ON a.id = e.artista_id
-        WHERE p.id = $P{id_artista}]]>
+    p.id,
+    p.nombre,
+    a.apodo,
+    p.nacionalidad,
+    p.email,
+    GROUP_CONCAT(e.especialidades SEPARATOR ', ') AS especialidades
+FROM persona p
+LEFT JOIN artista a ON p.id = a.id
+LEFT JOIN artista_especialidades e ON a.id = e.artista_id
+WHERE p.id = $P{id_artista}]]>
 	</queryString>
-	<field name="id" class="java.lang.Long"/>
-	<field name="nombre" class="java.lang.String"/>
-	<field name="apodo" class="java.lang.String"/>
-	<field name="nacionalidad" class="java.lang.String"/>
-	<field name="email" class="java.lang.String"/>
-	<field name="especialidades" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+	</field>
+	<field name="apodo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apodo"/>
+		<property name="com.jaspersoft.studio.field.label" value="apodo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="artista"/>
+	</field>
+	<field name="nacionalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+	</field>
+	<field name="especialidades" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="especialidades"/>
+		<property name="com.jaspersoft.studio.field.label" value="especialidades"/>
+	</field>
 	<title>
 		<band height="40">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="0" y="0" width="360" height="30" uuid="f9b1f632-e91f-415a-94ee-efb0cb96ed88"/>
+				<reportElement x="0" y="0" width="360" height="30" uuid="844ce568-3540-4a96-8d93-1983f6c9f369"/>
 				<textElement textAlignment="Center">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -36,65 +62,65 @@
 	<detail>
 		<band height="190">
 			<rectangle>
-				<reportElement x="0" y="0" width="360" height="190" uuid="2dcf0adc-8edb-4f7d-aff2-a778cf26f9bc"/>
+				<reportElement x="0" y="0" width="360" height="190" uuid="373e9070-85cf-45b9-9080-d08a82d003dc"/>
 				<graphicElement>
 					<pen lineWidth="1.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="15" y="15" width="120" height="20" uuid="4a56db0c-bb2b-48c1-baac-a256c27ca2c6"/>
+				<reportElement x="15" y="15" width="120" height="20" uuid="7322e583-987e-45a5-814a-497181e4da8c"/>
 				<text><![CDATA[Nombre:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="15" width="200" height="20" uuid="0b54365b-0b18-4be9-a572-db6edfa836c0"/>
+				<reportElement x="140" y="15" width="200" height="20" uuid="6864d650-e1ba-422d-b6e4-485f646b9559"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="40" width="120" height="20" uuid="34395367-b564-4dcd-a465-ba047b888c0c"/>
+				<reportElement x="15" y="40" width="120" height="20" uuid="99f3c648-d3c9-4d34-9f92-4e9639b7cd2f"/>
 				<text><![CDATA[Apodo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="40" width="200" height="20" uuid="80e9bffd-f647-457c-81ec-f04739d1111f"/>
+				<reportElement x="140" y="40" width="200" height="20" uuid="f2096f68-f24e-4c25-8155-a0d1a3dc4046"/>
 				<textFieldExpression><![CDATA[$F{apodo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="65" width="120" height="20" uuid="eb2265f6-dd39-4a79-a4f1-0cdb1bf18e7f"/>
+				<reportElement x="15" y="65" width="120" height="20" uuid="d34b8e15-7435-40d9-9611-e9e44818fb28"/>
 				<text><![CDATA[Nacionalidad:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="65" width="200" height="20" uuid="52219ef0-b738-4865-8435-8add6cd5f565"/>
+				<reportElement x="140" y="65" width="200" height="20" uuid="37977e54-8f53-4fa5-9d88-a9d40ca0dce8"/>
 				<textFieldExpression><![CDATA[$F{nacionalidad}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="90" width="120" height="20" uuid="5157923f-8327-49e0-ad29-fb9f54ad4a34"/>
+				<reportElement x="15" y="90" width="120" height="20" uuid="bd5def8f-8f89-49ac-a168-8af6b7c593ab"/>
 				<text><![CDATA[Email:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="90" width="200" height="20" uuid="032a96b2-d0f5-431d-be10-0d519a982fd0"/>
+				<reportElement x="140" y="90" width="200" height="20" uuid="d6327b12-5c0e-46be-97a3-47693267c04f"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="115" width="120" height="20" uuid="fa691f36-58fc-4685-a9a5-5c4e7d63159f"/>
+				<reportElement x="15" y="115" width="120" height="20" uuid="d7de09c6-8f1c-421e-9bf5-2fae467de390"/>
 				<text><![CDATA[Especialidades:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="115" width="200" height="20" uuid="e2fa1808-9a37-4417-9d43-5383c87e342a"/>
+				<reportElement x="140" y="115" width="200" height="20" uuid="22ebce1d-7cc6-4e6b-bacb-52a23cd444b1"/>
 				<textFieldExpression><![CDATA[$F{especialidades}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="140" width="120" height="20" uuid="94473556-ccf1-46f4-9fd9-4040f259fc31"/>
+				<reportElement x="15" y="140" width="120" height="20" uuid="8fb97b0d-9fc9-421f-87d2-1b66aa219fb9"/>
 				<text><![CDATA[Fecha emisión:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="140" width="200" height="20" uuid="8d464be1-731a-4956-a529-beaa0f2e0ba9"/>
+				<reportElement x="140" y="140" width="200" height="20" uuid="01154a70-2356-427c-8d6f-aac0e0b0633f"/>
 				<textFieldExpression><![CDATA[$P{fecha_emision}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="165" width="120" height="20" uuid="d0b89125-6f5d-49e0-81c0-30c793f3fd2e"/>
+				<reportElement x="15" y="165" width="120" height="20" uuid="6f28c9c9-27b1-46f4-951d-ed02395c0c02"/>
 				<text><![CDATA[ID Artista:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="165" width="200" height="20" uuid="a991b997-8ddf-473c-9f9c-b00a81f52348"/>
+				<reportElement x="140" y="165" width="200" height="20" uuid="604e53a4-6099-4e06-adf9-68b6b0f568c2"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 		</band>
