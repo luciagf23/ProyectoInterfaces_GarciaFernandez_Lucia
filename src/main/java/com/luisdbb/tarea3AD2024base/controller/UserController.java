@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.luisdbb.tarea3AD2024base.config.StageManager;
+import com.luisdbb.tarea3AD2024base.help.HelpUtil;
 import com.luisdbb.tarea3AD2024base.modelo.Artista;
 import com.luisdbb.tarea3AD2024base.modelo.Coordinacion;
 import com.luisdbb.tarea3AD2024base.modelo.Credencial;
@@ -57,10 +58,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
 
 /**
  * @author Ram Alapure
@@ -401,8 +405,6 @@ public class UserController implements Initializable {
 
 		loadUserDetails();
 	}
-	
-
 
 	@FXML
 	private void onGestionarEspecialidades(ActionEvent event) {
@@ -454,8 +456,7 @@ public class UserController implements Initializable {
 	 * mostrarError("No se pudo abrir la ventana de espectáculos"); } }
 	 * 
 	 */
-	
-	
+
 	@FXML
 	private void abrirEspectaculos(ActionEvent event) {
 		stageManager.switchScene(FxmlView.ESPECTACULOS);
@@ -548,6 +549,7 @@ public class UserController implements Initializable {
 			fechaSenior.setVisible(newVal);
 			fechaSenior.setManaged(newVal);
 		});
+
 	}
 
 	/*
@@ -685,4 +687,20 @@ public class UserController implements Initializable {
 		a.setContentText(msg);
 		a.showAndWait();
 	}
+
+	public void inicializarAyuda(Scene scene) {
+		scene.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.F1) {
+				HelpUtil.mostrarAyuda();
+			}
+		});
+	}
+
+	@FXML
+	private void onAyuda() {
+		HelpUtil.mostrarAyuda();
+	}
+
+	
+
 }

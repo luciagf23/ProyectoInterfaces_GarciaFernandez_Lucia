@@ -49,7 +49,16 @@
     <artifactId>javafx-fxml</artifactId>
     <version>23</version>
 </dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-web</artifactId>
+			<version>23.0.2</version>
+		</dependency>
+
+
 	</dependencies>
+	
+
 
 	<build>
 		<plugins>

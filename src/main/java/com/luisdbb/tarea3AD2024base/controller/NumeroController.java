@@ -35,6 +35,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -95,11 +97,15 @@ public class NumeroController implements Initializable {
 		this.stageManager = stageManager;
 	}
 
+	@FXML
+	private void salir(ActionEvent event) {
+		Platform.exit();
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		espectaculoActual = sesionService.getEspectaculoActual();
 
-		
 		if (espectaculoActual == null) {
 			mostrarError("No se ha seleccionado ningún espectáculo");
 			return;
@@ -121,6 +127,7 @@ public class NumeroController implements Initializable {
 			if (newVal != null)
 				cargarNumeroEnFormulario(newVal);
 		});
+
 	}
 
 	/*
@@ -311,4 +318,5 @@ public class NumeroController implements Initializable {
 		alert.setContentText(msg);
 		alert.showAndWait();
 	}
+
 }

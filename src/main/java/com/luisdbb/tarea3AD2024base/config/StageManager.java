@@ -20,6 +20,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -50,9 +51,13 @@ public class StageManager {
 
 	private void show(final Parent rootnode, String title) {
 		Scene scene = prepareScene(rootnode);
-		//scene.getStylesheets().add("/styles/Styles.css");
+		
+		scene.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.F1) {
+				com.luisdbb.tarea3AD2024base.help.HelpUtil.mostrarAyuda();
+			}
+		});
 
-		//primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setTitle(title);
 		primaryStage.setScene(scene);
 		primaryStage.sizeToScene();

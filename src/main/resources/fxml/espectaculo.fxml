@@ -64,22 +64,22 @@
 				</rowConstraints>
 
 				<Label text="Nombre:" GridPane.rowIndex="0"
-					GridPane.columnIndex="0" textFill="WHITE"/>
+					GridPane.columnIndex="0" textFill="WHITE" />
 				<TextField fx:id="txtNombre" GridPane.rowIndex="0"
 					GridPane.columnIndex="1" prefWidth="220" />
 
 				<Label text="Fecha inicio:" GridPane.rowIndex="1"
-					GridPane.columnIndex="0" textFill="WHITE"/>
+					GridPane.columnIndex="0" textFill="WHITE" />
 				<DatePicker fx:id="dateInicio" GridPane.rowIndex="1"
 					GridPane.columnIndex="1" prefWidth="220" />
 
 				<Label text="Fecha fin:" GridPane.rowIndex="2"
-					GridPane.columnIndex="0" textFill="WHITE"/>
+					GridPane.columnIndex="0" textFill="WHITE" />
 				<DatePicker fx:id="dateFin" GridPane.rowIndex="2"
 					GridPane.columnIndex="1" prefWidth="220" />
 
 				<Label text="Coordinador:" GridPane.rowIndex="3"
-					GridPane.columnIndex="0" textFill="WHITE"/>
+					GridPane.columnIndex="0" textFill="WHITE" />
 				<ComboBox fx:id="comboCoordinador" GridPane.rowIndex="3"
 					GridPane.columnIndex="1" prefWidth="220" />
 			</GridPane>
@@ -115,6 +115,7 @@
 					</effect>
 				</Button>
 
+
 				<Button fx:id="btnNumeros" text="Gestionar Números"
 					onAction="#abrirNumeros" style="-fx-background-color: white;">
 					<effect>
@@ -129,6 +130,13 @@
 					</effect>
 				</Button>
 			</HBox>
+			<Button fx:id="exportarEspectaculo"  prefWidth="180"
+				text="Exportar espectáculos" onAction="#onExportarEspectaculos"
+				style="-fx-background-color: white;">
+				<effect>
+					<DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+				</effect>
+			</Button>
 
 		</VBox>
 	</center>

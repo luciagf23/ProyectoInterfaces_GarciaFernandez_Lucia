@@ -99,8 +99,21 @@ public enum FxmlView {
 			return "/fxml/fichaArtista.fxml";
 		}
 
-	};
+	},
 
+	EXPORTAR_ESPECTACULOS{
+		@Override
+		public String getTitle() {
+			return getStringFromResourceBundle("exportar_espectaculos.title");
+		}
+
+		@Override
+		public String getFxmlFile() {
+			return "/fxml/ExportarEspectaculosView.fxml";
+		}
+
+	};
+	
 	public abstract String getTitle();
 
 	{

@@ -1,0 +1,18 @@
+<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.luisdbb.tarea3AD2024base.controller.ExportarEspectaculosController"
+      style="-fx-padding: 20;">
+
+    <Label text="Exportar espectáculos a TXT" style="-fx-font-size: 18;" />
+
+    <HBox spacing="10">
+        <TextField fx:id="txtRuta" prefWidth="300" />
+        <Button text="Examinar" onAction="#onExaminar" />
+    </HBox>
+
+    <HBox spacing="20">
+        <Button text="Exportar" onAction="#onExportar" />
+        <Button text="Cancelar" onAction="#onCancelar" />
+    </HBox>
+
+</VBox>

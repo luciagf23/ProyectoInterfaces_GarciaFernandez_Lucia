@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.luisdbb.tarea3AD2024base.controller.AyudaController">
+
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #2a3b4c;">
+            <Label text="Ayuda" style="-fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Button text="Cerrar" onAction="#cerrarVentana"/>
+        </HBox>
+    </top>
+
+    <center>
+        <WebView fx:id="webAyuda"/>
+    </center>
+
+</BorderPane>

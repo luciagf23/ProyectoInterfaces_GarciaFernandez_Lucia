@@ -117,4 +117,9 @@ public class EspectaculoService {
 	public boolean existsByNombre(String nombre) {
 		return espectaculoRepository.existsByNombre(nombre);
 	}
+
+	public List<Espectaculo> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

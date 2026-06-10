@@ -46,7 +46,8 @@
 				</Menu>
 				<Menu mnemonicParsing="false" text="Ayuda">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Sobre" />
+						<MenuItem mnemonicParsing="false" text="Ayuda"
+							onAction="#onAyuda" />
 					</items>
 
 				</Menu>
@@ -162,6 +163,7 @@
 						onAction="#saveUser" styleClass="btnGreen" textFill="WHITE" />
 					<Button fx:id="deleteButton" text="Eliminar" prefWidth="80"
 						onAction="#deleteUsers" />
+
 				</HBox>
 
 			</children>
@@ -197,7 +199,7 @@
 					</children>
 				</HBox>
 				<TableView fx:id="userTable" prefHeight="300.0"
-					 tableMenuButtonVisible="false">
+					tableMenuButtonVisible="false">
 					<columns>
 						<TableColumn fx:id="colUserId" prefWidth="50.0"
 							text="ID" />

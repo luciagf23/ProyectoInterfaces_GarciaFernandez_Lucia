@@ -17,6 +17,7 @@ import com.luisdbb.tarea3AD2024base.services.PersonaService;
 import com.luisdbb.tarea3AD2024base.services.SesionService;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,8 +35,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.scene.input.KeyCode;
 
 @Controller
 public class EspectaculoController implements Initializable {
@@ -100,6 +103,11 @@ public class EspectaculoController implements Initializable {
 		this.stageManager = stageManager;
 	}
 
+	@FXML
+	private void salir(ActionEvent event) {
+		Platform.exit();
+	}
+
 	public void initialize(URL location, ResourceBundle resources) {
 
 		configurarTabla();
@@ -118,6 +126,7 @@ public class EspectaculoController implements Initializable {
 					}
 				};
 			}
+
 		});
 
 		comboCoordinador.setButtonCell(new ListCell<Coordinacion>() {
@@ -135,6 +144,7 @@ public class EspectaculoController implements Initializable {
 				cargarEspectaculoEnFormulario(newSel);
 			}
 		});
+
 	}
 
 	private void configurarTabla() {
@@ -191,34 +201,34 @@ public class EspectaculoController implements Initializable {
 		}
 
 		LocalDate inicio = dateInicio.getValue();
-	    LocalDate fin = dateFin.getValue();
+		LocalDate fin = dateFin.getValue();
 
-	    // Inicio no puede ser anterior a hoy
-	    if (inicio.isBefore(LocalDate.now())) {
-	        throw new RuntimeException("La fecha de inicio no puede ser anterior a hoy");
-	    }
+		// Inicio no puede ser anterior a hoy
+		if (inicio.isBefore(LocalDate.now())) {
+			throw new RuntimeException("La fecha de inicio no puede ser anterior a hoy");
+		}
 
-	    // Fin no puede ser anterior a inicio
-	    if (fin.isBefore(inicio)) {
-	        throw new RuntimeException("La fecha de fin no puede ser anterior a la fecha de inicio");
-	    }
+		// Fin no puede ser anterior a inicio
+		if (fin.isBefore(inicio)) {
+			throw new RuntimeException("La fecha de fin no puede ser anterior a la fecha de inicio");
+		}
 
-	    // Periodo máximo 1 año
-	    if (fin.isAfter(inicio.plusYears(1))) {
-	        throw new RuntimeException("El periodo no puede ser superior a 1 año");
-	    }
+		// Periodo máximo 1 año
+		if (fin.isAfter(inicio.plusYears(1))) {
+			throw new RuntimeException("El periodo no puede ser superior a 1 año");
+		}
 
-	    // Nombre único
-	    if (espectaculoEditando == null) {
-	        if (espectaculoService.existsByNombre(txtNombre.getText().trim())) {
-	            throw new RuntimeException("Ya existe un espectáculo con ese nombre");
-	        }
-	    } else {
-	        if (!espectaculoEditando.getNombre().equalsIgnoreCase(txtNombre.getText().trim())
-	                && espectaculoService.existsByNombre(txtNombre.getText().trim())) {
-	            throw new RuntimeException("Ya existe un espectáculo con ese nombre");
-	        }
-	    }
+		// Nombre único
+		if (espectaculoEditando == null) {
+			if (espectaculoService.existsByNombre(txtNombre.getText().trim())) {
+				throw new RuntimeException("Ya existe un espectáculo con ese nombre");
+			}
+		} else {
+			if (!espectaculoEditando.getNombre().equalsIgnoreCase(txtNombre.getText().trim())
+					&& espectaculoService.existsByNombre(txtNombre.getText().trim())) {
+				throw new RuntimeException("Ya existe un espectáculo con ese nombre");
+			}
+		}
 	}
 
 	private Espectaculo construirEspectaculoDesdeFormulario() {
@@ -327,7 +337,7 @@ public class EspectaculoController implements Initializable {
 	@FXML
 	private void abrirNumeros(ActionEvent event) {
 		Espectaculo seleccionado = tablaEspectaculos.getSelectionModel().getSelectedItem();
-		
+
 		if (seleccionado == null) {
 			mostrarError("Selecciona un espectáculo primero");
 			return;
@@ -354,6 +364,11 @@ public class EspectaculoController implements Initializable {
 		a.setHeaderText("Error");
 		a.setContentText(msg);
 		a.showAndWait();
+	}
+	
+	@FXML
+	private void onExportarEspectaculos() {
+		stageManager.switchScene(FxmlView.EXPORTAR_ESPECTACULOS);
 	}
 
 }
