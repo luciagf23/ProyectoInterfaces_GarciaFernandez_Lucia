@@ -194,6 +194,8 @@ public class UserController implements Initializable {
 	private ObservableList<Persona> userList = FXCollections.observableArrayList();
 	private ObservableList<String> roles = FXCollections.observableArrayList("Artista", "Coordinacion");
 
+	private Long idArtistaInforme = null;
+
 	public void setStageManager(StageManager stageManager) {
 		this.stageManager = stageManager;
 	}
@@ -241,6 +243,8 @@ public class UserController implements Initializable {
 
 			Artista a = artistaRepository.findById(persona.getId()).orElseThrow();
 			personaEditando = a;
+
+			idArtistaInforme = a.getId();
 
 			chkAcrobacia.setSelected(false);
 			chkHumor.setSelected(false);
@@ -721,9 +725,9 @@ public class UserController implements Initializable {
 
 	@FXML
 	private void onGenerarCarnet() {
-		Long idArtista = 3L;
-		Date fecha = new Date();
-		reportService.generarCarnetArtista(idArtista, fecha);
+		Long idArtista = idArtistaInforme;
+
+		reportService.generarCarnetArtista(idArtista);
 	}
 
 	// BOTÓN: Generar Informe Estadístico

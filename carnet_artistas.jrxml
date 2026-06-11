@@ -4,7 +4,6 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_TareaInterfaces"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="id_artista" class="java.lang.Long"/>
-	<parameter name="fecha_emision" class="java.sql.Date"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
     p.id,
@@ -108,19 +107,11 @@ WHERE p.id = $P{id_artista}]]>
 				<textFieldExpression><![CDATA[$F{especialidades}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="140" width="120" height="20" uuid="aa4b9f7a-48b1-4013-bdb0-77812599256b"/>
-				<text><![CDATA[Fecha emisión:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="140" y="140" width="200" height="20" uuid="cf393461-8c93-481e-8d18-311a3e56f4da"/>
-				<textFieldExpression><![CDATA[$P{fecha_emision}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="15" y="165" width="120" height="20" uuid="c0d4989e-dab1-4481-b4b6-2015c1e959b0"/>
+				<reportElement x="15" y="150" width="120" height="20" uuid="c0d4989e-dab1-4481-b4b6-2015c1e959b0"/>
 				<text><![CDATA[ID Artista:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="165" width="200" height="20" uuid="50e2c2fb-1c24-42ff-9b7a-86605cc06f02"/>
+				<reportElement x="140" y="150" width="200" height="20" uuid="50e2c2fb-1c24-42ff-9b7a-86605cc06f02"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 		</band>
