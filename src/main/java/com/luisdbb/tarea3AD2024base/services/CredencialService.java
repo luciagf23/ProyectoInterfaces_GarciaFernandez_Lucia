@@ -6,57 +6,62 @@ import org.springframework.stereotype.Service;
 import com.luisdbb.tarea3AD2024base.modelo.Credencial;
 import com.luisdbb.tarea3AD2024base.repositorios.CredencialRepository;
 
+/**
+ * Servicio encargado de la gestión de credenciales.
+ *
+ * Permite recuperar usuarios y validar información de acceso.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Service
 public class CredencialService {
 
-    @Autowired
-    private CredencialRepository credencialRepository;
-    
-    @Autowired
-    private CredencialService credencialService;
+	@Autowired
+	private CredencialRepository credencialRepository;
 
-    public Credencial guardar(Credencial credencial) {
-    	validarCredenciales(credencial);
+	@Autowired
+	private CredencialService credencialService;
 
-        if (credencialRepository.existsByUsername(credencial.getUsername())) {
-            throw new RuntimeException("Username ya registrado");
-        
-        }
+	public Credencial guardar(Credencial credencial) {
+		validarCredenciales(credencial);
 
-        return credencialRepository.save(credencial);
-    }
+		if (credencialRepository.existsByUsername(credencial.getUsername())) {
+			throw new RuntimeException("Username ya registrado");
 
-    public Credencial findByUsername(String username) {
-        return credencialRepository.findByUsername(username).orElse(null);
-    }
-    
-    
-    private void validarCredenciales(Credencial credencial) {
+		}
 
-        String username = credencial.getUsername();
-        String password = credencial.getPassword();
+		return credencialRepository.save(credencial);
+	}
 
-        if (username == null || password == null) {
-            throw new RuntimeException("Usuario y contraseña obligatorios");
-        }
+	public Credencial findByUsername(String username) {
+		return credencialRepository.findByUsername(username).orElse(null);
+	}
 
-        if (username.contains(" ") || password.contains(" ")) {
-            throw new RuntimeException("Usuario y contraseña no pueden contener espacios");
-        }
+	private void validarCredenciales(Credencial credencial) {
 
-        if (username.length() <= 2 || password.length() <= 2) {
-            throw new RuntimeException("Usuario y contraseña deben tener más de 2 caracteres");
-        }
+		String username = credencial.getUsername();
+		String password = credencial.getPassword();
 
-        if (!username.matches("[a-zA-Z]+")) {
-            throw new RuntimeException("El usuario solo puede contener letras sin tildes");
-        }
+		if (username == null || password == null) {
+			throw new RuntimeException("Usuario y contraseña obligatorios");
+		}
 
-        // normalizar
-        credencial.setUsername(username.toLowerCase());
-    }
+		if (username.contains(" ") || password.contains(" ")) {
+			throw new RuntimeException("Usuario y contraseña no pueden contener espacios");
+		}
 
-   
+		if (username.length() <= 2 || password.length() <= 2) {
+			throw new RuntimeException("Usuario y contraseña deben tener más de 2 caracteres");
+		}
 
-    
+		if (!username.matches("[a-zA-Z]+")) {
+			throw new RuntimeException("El usuario solo puede contener letras sin tildes");
+		}
+
+		// normalizar
+		credencial.setUsername(username.toLowerCase());
+	}
+
 }

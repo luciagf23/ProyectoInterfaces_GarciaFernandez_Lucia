@@ -8,38 +8,44 @@ import org.springframework.stereotype.Service;
 import com.luisdbb.tarea3AD2024base.modelo.Credencial;
 import com.luisdbb.tarea3AD2024base.repositorios.CredencialRepository;
 
+/**
+ * Servicio encargado de la autenticación de usuarios.
+ * 
+ * Verifica las credenciales de acceso introducidas durante el inicio de sesión.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Service
 public class LoginService {
 
-    @Autowired
-    private CredencialRepository credencialRepository;
+	@Autowired
+	private CredencialRepository credencialRepository;
 
-    private Credencial usuarioActual;
+	private Credencial usuarioActual;
 
-    public boolean login(String username, String password) {
+	public boolean login(String username, String password) {
 
-        Optional<Credencial> credencial =
-                credencialRepository.findByUsername(username);
+		Optional<Credencial> credencial = credencialRepository.findByUsername(username);
 
-        if (credencial.isPresent()
-                && credencial.get().getPassword().equals(password)) {
+		if (credencial.isPresent() && credencial.get().getPassword().equals(password)) {
 
-            usuarioActual = credencial.get();
-            return true;
-        }
+			usuarioActual = credencial.get();
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public void logout() {
-        usuarioActual = null;
-    }
+	public void logout() {
+		usuarioActual = null;
+	}
 
-    public Credencial getUsuarioActual() {
-        return usuarioActual;
-    }
+	public Credencial getUsuarioActual() {
+		return usuarioActual;
+	}
 
-    public boolean haySesion() {
-        return usuarioActual != null;
-    }
+	public boolean haySesion() {
+		return usuarioActual != null;
+	}
 }

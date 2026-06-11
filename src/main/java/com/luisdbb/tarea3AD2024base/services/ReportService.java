@@ -13,6 +13,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Servicio encargado de la generación de informes y exportación de datos.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 
 public class ReportService {
 

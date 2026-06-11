@@ -7,6 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Utilidad para la gestión y visualización de la ayuda contextual.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 public class HelpUtil {
 
 	public static void mostrarAyuda() {

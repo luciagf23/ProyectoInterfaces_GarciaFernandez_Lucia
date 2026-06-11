@@ -12,8 +12,20 @@ import com.luisdbb.tarea3AD2024base.config.StageManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-@SpringBootApplication(scanBasePackages = "com.luisdbb.tarea3AD2024base")
+/**
+ * 
+ * Clase principal de arranque de la aplicación.
+ * 
+ * 
+ * Inicializa el contexto de Spring Boot y carga la interfaz gráfica
+ * desarrollada con JavaFX.
+ * 
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 
+@SpringBootApplication(scanBasePackages = "com.luisdbb.tarea3AD2024base")
 public class Tarea3Ad2024baseApplication extends Application {
 
 	protected ConfigurableApplicationContext springContext;

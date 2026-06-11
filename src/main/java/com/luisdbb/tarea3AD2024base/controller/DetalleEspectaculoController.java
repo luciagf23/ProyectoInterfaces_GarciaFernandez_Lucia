@@ -19,6 +19,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Controlador encargado de mostrar la información detallada de un espectáculo.
+ * Permite consultar todos los datos asociados a un espectáculo concreto.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 public class DetalleEspectaculoController implements Initializable {
 
 	@FXML

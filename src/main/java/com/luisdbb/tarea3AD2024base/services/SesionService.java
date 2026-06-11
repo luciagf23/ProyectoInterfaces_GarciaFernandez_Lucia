@@ -6,6 +6,16 @@ import com.luisdbb.tarea3AD2024base.modelo.Artista;
 import com.luisdbb.tarea3AD2024base.modelo.Credencial;
 import com.luisdbb.tarea3AD2024base.modelo.Espectaculo;
 
+/**
+ * Gestiona la sesión activa de la aplicación.
+ *
+ * Mantiene información del usuario autenticado durante la ejecución del
+ * sistema.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Service
 public class SesionService {
 

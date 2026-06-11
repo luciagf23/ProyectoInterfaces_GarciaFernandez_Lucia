@@ -25,7 +25,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Manages switching Scenes on the Primary Stage
+ * Gestor de ventanas de la aplicación.
+ * 
+ * Permite controlar la navegación entre las distintas pantallas JavaFX.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
  */
 
 @Component
@@ -51,7 +56,7 @@ public class StageManager {
 
 	private void show(final Parent rootnode, String title) {
 		Scene scene = prepareScene(rootnode);
-		
+
 		scene.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.F1) {
 				com.luisdbb.tarea3AD2024base.help.HelpUtil.mostrarAyuda();

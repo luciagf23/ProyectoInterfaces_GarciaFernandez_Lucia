@@ -23,6 +23,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.event.ActionEvent;
 
+/**
+ * Controlador encargado de la gestión de artistas.
+ * 
+ * Permite consultar y administrar la información relacionada con los artistas
+ * registrados.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Controller
 public class ArtistaController implements Initializable {
 

@@ -9,13 +9,19 @@ import com.luisdbb.tarea3AD2024base.modelo.Credencial;
 import com.luisdbb.tarea3AD2024base.modelo.User;
 import com.luisdbb.tarea3AD2024base.repositorios.UserRepository;
 
+/**
+ * Servicio encargado de la gestión de usuarios.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 
 @Service
 public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private CredencialService credencialService;
 
@@ -44,16 +50,16 @@ public class UserService {
 	}
 
 	public boolean authenticate(String username, String password) {
-	    if (username.equals("admin") && password.equals("admin")) {
-	        return true;
-	    }
-	    
-	    // Para coordinación y artistas buscar en credenciales
-	    Credencial credencial = credencialService.findByUsername(username);
-	    if (credencial == null) {
-	        return false;
-	    }
-	    return password.equals(credencial.getPassword());
+		if (username.equals("admin") && password.equals("admin")) {
+			return true;
+		}
+
+		// Para coordinación y artistas buscar en credenciales
+		Credencial credencial = credencialService.findByUsername(username);
+		if (credencial == null) {
+			return false;
+		}
+		return password.equals(credencial.getPassword());
 	}
 
 	public User findByEmail(String email) {

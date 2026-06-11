@@ -1,18 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.luisdbb.tarea3AD2024base.config;
 
-import java.io.IOException;
 import java.util.ResourceBundle;
-import javafx.stage.Stage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.Configuration;;
 
+/**
+ * Clase de configuración principal de Spring.
+ * 
+ * Define los componentes necesarios para la inicialización de la aplicación.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Configuration
 public class AppJavaConfig {
 

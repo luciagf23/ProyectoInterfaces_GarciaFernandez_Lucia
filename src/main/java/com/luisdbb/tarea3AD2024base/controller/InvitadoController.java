@@ -22,6 +22,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Controlador encargado de la gestión de invitados.
+ * 
+ * Permite administrar la información relacionada con asistentes o participantes
+ * invitados. 
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Controller
 public class InvitadoController implements Initializable {
 

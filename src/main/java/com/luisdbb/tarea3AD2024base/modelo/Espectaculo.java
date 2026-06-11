@@ -1,11 +1,8 @@
 package com.luisdbb.tarea3AD2024base.modelo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +12,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
+
+/**
+ * Representa un espectáculo circense.
+ *
+ * Un espectáculo está formado por uno o varios números circenses y puede estar
+ * coordinado por un coordinador.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 
 @Entity
 public class Espectaculo {

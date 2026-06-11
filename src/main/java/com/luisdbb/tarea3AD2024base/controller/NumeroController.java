@@ -35,11 +35,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Controlador encargado de la gestión de números circenses.
+ * 
+ * Permite crear, modificar y eliminar números asociados a los espectáculos.
+ * 
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Controller
 public class NumeroController implements Initializable {
 

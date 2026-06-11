@@ -21,66 +21,67 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+/**
+ * Controlador de la ficha personal del artista.
+ *
+ * Muestra información asociada al artista autenticado.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Controller
 public class FichaArtistaController implements Initializable {
 
-    @FXML private Label lblNombre;
-    @FXML private Label lblEmail;
-    @FXML private Label lblNacionalidad;
-    @FXML private Label lblApodo;
-    @FXML private Label lblEspecialidades;
+	@FXML
+	private Label lblNombre;
+	@FXML
+	private Label lblEmail;
+	@FXML
+	private Label lblNacionalidad;
+	@FXML
+	private Label lblApodo;
+	@FXML
+	private Label lblEspecialidades;
 
-    @FXML private ListView<String> listaNumeros;
-    @FXML private ListView<String> listaEspectaculos;
+	@FXML
+	private ListView<String> listaNumeros;
+	@FXML
+	private ListView<String> listaEspectaculos;
 
-    @Autowired
-    private SesionService sesionService;
+	@Autowired
+	private SesionService sesionService;
 
-    @Autowired
-    private NumeroService numeroService;
+	@Autowired
+	private NumeroService numeroService;
 
-    private StageManager stageManager;
+	private StageManager stageManager;
 
-    public void setStageManager(StageManager stageManager) {
-        this.stageManager = stageManager;
-    }
+	public void setStageManager(StageManager stageManager) {
+		this.stageManager = stageManager;
+	}
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        cargarFicha();
-    }
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		cargarFicha();
+	}
 
-    private void cargarFicha() {
+	private void cargarFicha() {
 
-        Artista artista = (Artista) sesionService.getUsuarioActual().getPersona();
+		Artista artista = (Artista) sesionService.getUsuarioActual().getPersona();
 
-        lblNombre.setText("Nombre: " + artista.getNombre());
-        lblEmail.setText("Email: " + artista.getEmail());
-        lblNacionalidad.setText("Nacionalidad: " + artista.getNacionalidad());
-        lblApodo.setText("Apodo: " + (artista.getApodo() != null ? artista.getApodo() : "-"));
-        lblEspecialidades.setText("Especialidades: " +
-            artista.getEspecialidades().stream()
-                .map(Enum::name)
-                .collect(Collectors.joining(", "))
-        );
+		lblNombre.setText("Nombre: " + artista.getNombre());
+		lblEmail.setText("Email: " + artista.getEmail());
+		lblNacionalidad.setText("Nacionalidad: " + artista.getNacionalidad());
+		lblApodo.setText("Apodo: " + (artista.getApodo() != null ? artista.getApodo() : "-"));
+		lblEspecialidades.setText("Especialidades: "
+				+ artista.getEspecialidades().stream().map(Enum::name).collect(Collectors.joining(", ")));
 
-        List<Numero> numeros = numeroService.findByArtista(artista.getId());
+		List<Numero> numeros = numeroService.findByArtista(artista.getId());
 
-        listaNumeros.setItems(FXCollections.observableArrayList(
-            numeros.stream()
-                .map(n -> n.getId() + " - " + n.getNombre())
-                .collect(Collectors.toList())
-        ));
+		listaNumeros.setItems(FXCollections.observableArrayList(
+				numeros.stream().map(n -> n.getId() + " - " + n.getNombre()).collect(Collectors.toList())));
 
-        listaEspectaculos.setItems(FXCollections.observableArrayList(
-            numeros.stream()
-                .map(Numero::getEspectaculo)
-                .distinct()
-                .map(e -> e.getId() + " - " + e.getNombre())
-                .collect(Collectors.toList())
-        ));
-    }
+		listaEspectaculos.setItems(FXCollections.observableArrayList(numeros.stream().map(Numero::getEspectaculo)
+				.distinct().map(e -> e.getId() + " - " + e.getNombre()).collect(Collectors.toList())));
+	}
 }
-
-
-

@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 import com.luisdbb.tarea3AD2024base.modelo.*;
 import com.luisdbb.tarea3AD2024base.repositorios.*;
 
+/**
+ * Servicio encargado del registro de usuarios en el sistema.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Service
 public class RegistroService {
 
@@ -24,7 +30,6 @@ public class RegistroService {
 		validarDatosPersona(persona);
 		validarEmail(persona);
 
-		
 		if (persona instanceof Coordinacion c) {
 			validarCoordinacion(c);
 		}

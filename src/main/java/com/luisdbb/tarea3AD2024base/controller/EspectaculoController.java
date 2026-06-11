@@ -40,6 +40,14 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.input.KeyCode;
 
+/**
+ * Controlador de la gestión de espectáculos.
+ *
+ * Permite administrar espectáculos y coordinar los números circenses asociados.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Controller
 public class EspectaculoController implements Initializable {
 
@@ -365,7 +373,7 @@ public class EspectaculoController implements Initializable {
 		a.setContentText(msg);
 		a.showAndWait();
 	}
-	
+
 	@FXML
 	private void onExportarEspectaculos() {
 		stageManager.switchScene(FxmlView.EXPORTAR_ESPECTACULOS);

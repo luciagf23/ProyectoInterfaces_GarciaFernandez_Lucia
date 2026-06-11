@@ -62,17 +62,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 
 /**
- * @author Ram Alapure
- * @since 05-04-2017
+ * Controlador encargado de la gestión de personas.
+ *
+ * Permite crear, modificar y eliminar artistas y coordinadores.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
  */
 
 @Controller
@@ -177,12 +179,11 @@ public class UserController implements Initializable {
 
 	@Autowired
 	private ArtistaRepository artistaRepository;
-	
-	private  ReportService reportService;
-	
+
+	private ReportService reportService;
+
 	@Autowired
 	private DataSource dataSource;
-
 
 	@Autowired
 	private SesionService sesionService;
@@ -278,6 +279,12 @@ public class UserController implements Initializable {
 		}
 	}
 
+	/**
+	 * Guarda o actualiza una persona en el sistema.
+	 *
+	 * Realiza las validaciones necesarias antes de persistir la información en la
+	 * base de datos.
+	 */
 	@FXML
 	private void saveUser(ActionEvent event) {
 		try {
@@ -714,16 +721,15 @@ public class UserController implements Initializable {
 
 	@FXML
 	private void onGenerarCarnet() {
-        Long idArtista = 3L; 
-        Date fecha = new Date();
-        reportService.generarCarnetArtista(idArtista, fecha);
-    }
+		Long idArtista = 3L;
+		Date fecha = new Date();
+		reportService.generarCarnetArtista(idArtista, fecha);
+	}
 
-    // BOTÓN: Generar Informe Estadístico
-    @FXML
-    private void onGenerarEstadistico() {
-        reportService.generarInformeEstadistico();
-    }
-	
+	// BOTÓN: Generar Informe Estadístico
+	@FXML
+	private void onGenerarEstadistico() {
+		reportService.generarInformeEstadistico();
+	}
 
 }

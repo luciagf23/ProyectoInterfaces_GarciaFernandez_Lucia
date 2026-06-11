@@ -9,31 +9,37 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
+/**
+ * Gestiona las credenciales de acceso de los usuarios.
+ *
+ * Almacena el nombre de usuario, contraseña y rol asignado.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Entity
 public class Credencial {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(unique = true)
-    private String username;
+	@Column(unique = true)
+	private String username;
 
-    private String password;
+	private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Rol rol;
+	@Enumerated(EnumType.STRING)
+	private Rol rol;
 
-    @OneToOne
-    private Persona persona;
-    
-    public Credencial() {
-    	
-    	
-    }
+	@OneToOne
+	private Persona persona;
 
-    
-    
+	public Credencial() {
+
+	}
+
 	public Credencial(Long id, String username, String password, Rol rol, Persona persona) {
 		super();
 		this.id = id;
@@ -82,8 +88,5 @@ public class Credencial {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-    
-    
-    
-	
+
 }

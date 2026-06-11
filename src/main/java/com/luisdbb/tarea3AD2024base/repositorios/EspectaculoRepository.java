@@ -10,25 +10,31 @@ import org.springframework.stereotype.Repository;
 
 import com.luisdbb.tarea3AD2024base.modelo.Espectaculo;
 
+/**
+ * Repositorio de acceso a datos para espectáculos.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Repository
-public interface EspectaculoRepository
-        extends JpaRepository<Espectaculo, Long> {
+public interface EspectaculoRepository extends JpaRepository<Espectaculo, Long> {
 
-    Optional<Espectaculo> findByNombre(String nombre);
+	Optional<Espectaculo> findByNombre(String nombre);
 
-    boolean existsByNombre(String nombre);
-    
-    boolean existsByNombreAndFechaInicio(String nombre, LocalDate fechaInicio);
+	boolean existsByNombre(String nombre);
 
-    @Query("""
-    	       SELECT DISTINCT e
-    	       FROM Espectaculo e
-    	       LEFT JOIN FETCH e.numeros n
-    	       LEFT JOIN FETCH n.artistas
-    	       WHERE e.id = :id
-    	       """)
-    	Espectaculo findByIdWithNumerosAndArtistas(@Param("id") Long id);
+	boolean existsByNombreAndFechaInicio(String nombre, LocalDate fechaInicio);
 
-    boolean existsByNombreAndFechaInicioAndIdNot(String nombre, LocalDate fechaInicio, Long id);
+	@Query("""
+			SELECT DISTINCT e
+			FROM Espectaculo e
+			LEFT JOIN FETCH e.numeros n
+			LEFT JOIN FETCH n.artistas
+			WHERE e.id = :id
+			""")
+	Espectaculo findByIdWithNumerosAndArtistas(@Param("id") Long id);
+
+	boolean existsByNombreAndFechaInicioAndIdNot(String nombre, LocalDate fechaInicio, Long id);
 
 }

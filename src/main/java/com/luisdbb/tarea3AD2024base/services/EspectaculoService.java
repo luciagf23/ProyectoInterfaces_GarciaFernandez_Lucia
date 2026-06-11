@@ -10,6 +10,15 @@ import com.luisdbb.tarea3AD2024base.modelo.Espectaculo;
 import com.luisdbb.tarea3AD2024base.repositorios.EspectaculoRepository;
 import com.luisdbb.tarea3AD2024base.repositorios.NumeroRepository;
 
+/**
+ * Servicio encargado de la gestión de espectáculos.
+ *
+ * Permite crear, modificar, consultar y eliminar espectáculos.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Service
 public class EspectaculoService {
 
@@ -119,6 +128,6 @@ public class EspectaculoService {
 	}
 
 	public List<Espectaculo> findAll() {
-		 return espectaculoRepository.findAll();
+		return espectaculoRepository.findAll();
 	}
 }

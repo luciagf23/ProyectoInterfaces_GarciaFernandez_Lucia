@@ -8,6 +8,16 @@ import org.springframework.stereotype.Service;
 import com.luisdbb.tarea3AD2024base.modelo.Artista;
 import com.luisdbb.tarea3AD2024base.repositorios.ArtistaRepository;
 
+/**
+ * 
+ * Servicio encargado de la gestión de artistas.
+ * 
+ * Proporciona operaciones de consulta y mantenimiento de artistas registrados
+ * en el sistema.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Service
 public class ArtistaService {
 

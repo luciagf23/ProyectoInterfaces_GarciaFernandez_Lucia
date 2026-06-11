@@ -8,6 +8,16 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
+/**
+ * Representa a un coordinador de espectáculos.
+ *
+ * Los coordinadores son responsables de la gestión y organización de los
+ * espectáculos circenses.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Entity
 @DiscriminatorValue("COORDINACION")
 public class Coordinacion extends Persona {
@@ -17,7 +27,7 @@ public class Coordinacion extends Persona {
 
 	@Column(name = "fecha_senior")
 	private LocalDate fechaSenior;
-	
+
 	@OneToMany(mappedBy = "coordinador")
 	private List<Espectaculo> espectaculos;
 
@@ -51,7 +61,5 @@ public class Coordinacion extends Persona {
 	public String toString() {
 		return getNombre();
 	}
-	
-	
 
 }

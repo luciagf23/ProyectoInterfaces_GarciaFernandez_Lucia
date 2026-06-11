@@ -2,6 +2,14 @@ package com.luisdbb.tarea3AD2024base.view;
 
 import java.util.ResourceBundle;
 
+/**
+ * Enumeración que contiene las vistas FXML utilizadas por la aplicación.
+ * 
+ * Permite centralizar la navegación entre pantallas. 
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 public enum FxmlView {
 	USER {
 		@Override
@@ -101,7 +109,7 @@ public enum FxmlView {
 
 	},
 
-	EXPORTAR_ESPECTACULOS{
+	EXPORTAR_ESPECTACULOS {
 		@Override
 		public String getTitle() {
 			return getStringFromResourceBundle("exportar_espectaculos.title");
@@ -113,7 +121,7 @@ public enum FxmlView {
 		}
 
 	};
-	
+
 	public abstract String getTitle();
 
 	{

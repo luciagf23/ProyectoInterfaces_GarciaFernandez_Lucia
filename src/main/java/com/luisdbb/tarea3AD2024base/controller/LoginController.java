@@ -17,17 +17,19 @@ import com.luisdbb.tarea3AD2024base.view.FxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 /**
- * @author Ram Alapure
- * @since 05-04-2017
+ * Controlador de la pantalla de inicio de sesión.
+ *
+ * Gestiona la autenticación y redirección de usuarios según su rol.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
  */
 
 @Controller
@@ -69,6 +71,14 @@ public class LoginController implements Initializable {
 		this.stageManager = stageManager;
 	}
 
+	/**
+	 * Realiza el proceso de autenticación del usuario.
+	 *
+	 * Verifica las credenciales introducidas y redirige a la pantalla
+	 * correspondiente.
+	 *
+	 * @param event Evento generado al pulsar el botón de acceso.
+	 */
 	@FXML
 	private void login(ActionEvent event) {
 

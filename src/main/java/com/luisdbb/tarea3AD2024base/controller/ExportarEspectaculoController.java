@@ -19,6 +19,15 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+/**
+ * Controlador encargado de la exportación de información de espectáculos.
+ * 
+ * Permite generar documentos e informes con los datos almacenados en el
+ * sistema.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Controller
 public class ExportarEspectaculoController {
 

@@ -8,24 +8,32 @@ import org.springframework.stereotype.Service;
 import com.luisdbb.tarea3AD2024base.modelo.Coordinacion;
 import com.luisdbb.tarea3AD2024base.repositorios.CoordinacionRepository;
 
+/**
+ * Servicio encargado de la gestión de coordinadores.
+ *
+ * Permite realizar operaciones de consulta y administración de coordinadores.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Service
 public class CoordinacionService {
 
-    @Autowired
-    private CoordinacionRepository coordinacionRepository;
+	@Autowired
+	private CoordinacionRepository coordinacionRepository;
 
-    public Coordinacion guardar(Coordinacion coordinacion) {
-        return coordinacionRepository.save(coordinacion);
-    }
+	public Coordinacion guardar(Coordinacion coordinacion) {
+		return coordinacionRepository.save(coordinacion);
+	}
 
-    public List<Coordinacion> listarTodos() {
-        return coordinacionRepository.findAll();
-    }
-    
-    private void validarCoordinacion(Coordinacion c) {
-        if (c.isSenior() && c.getFechaSenior() == null) {
-            throw new RuntimeException("Debe indicar la fecha desde que es senior");
-        }
-    }
+	public List<Coordinacion> listarTodos() {
+		return coordinacionRepository.findAll();
+	}
+
+	private void validarCoordinacion(Coordinacion c) {
+		if (c.isSenior() && c.getFechaSenior() == null) {
+			throw new RuntimeException("Debe indicar la fecha desde que es senior");
+		}
+	}
 
 }

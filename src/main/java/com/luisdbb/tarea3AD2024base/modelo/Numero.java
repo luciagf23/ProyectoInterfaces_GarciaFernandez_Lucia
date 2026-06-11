@@ -14,6 +14,15 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
+/**
+ * Representa un número circense perteneciente a un espectáculo.
+ *
+ * Cada número puede incluir uno o varios artistas participantes.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Entity
 public class Numero {
 

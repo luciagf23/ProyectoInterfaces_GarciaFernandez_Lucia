@@ -11,29 +11,37 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToOne;
 
+/**
+ * Clase abstracta que representa una persona del sistema.
+ *
+ * Una persona puede ser un artista o un coordinador y contiene la información
+ * común de ambos tipos de usuarios.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "dtype")
 public abstract class Persona {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	private String nombre;
 
-    private String nombre;
+	@Column(unique = true)
+	private String email;
 
-    @Column(unique = true)
-    private String email;
+	private String nacionalidad;
 
-    private String nacionalidad;
-    
-    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
-    private Credencial credencial;
-    
-    public Persona() {
-    	
-    }
+	@OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+	private Credencial credencial;
+
+	public Persona() {
+
+	}
 
 	public Persona(String nombre, String email, String nacionalidad) {
 		super();
@@ -81,8 +89,5 @@ public abstract class Persona {
 	public void setCredencial(Credencial credencial) {
 		this.credencial = credencial;
 	}
-	
-	
-    
-    
+
 }

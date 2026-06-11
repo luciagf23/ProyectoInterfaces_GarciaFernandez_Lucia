@@ -11,6 +11,16 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 
+/**
+ * Representa a un artista del circo.
+ *
+ * Un artista puede participar en números circenses y disponer de una o varias
+ * especialidades.
+ *
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Entity
 @DiscriminatorValue("ARTISTA")
 public class Artista extends Persona {

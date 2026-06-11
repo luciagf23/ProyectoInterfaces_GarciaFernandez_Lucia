@@ -8,6 +8,13 @@ import org.springframework.stereotype.Repository;
 import com.luisdbb.tarea3AD2024base.modelo.Coordinacion;
 import com.luisdbb.tarea3AD2024base.modelo.Persona;
 
+/**
+ * Repositorio de acceso a datos para personas.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
 	boolean existsByEmail(String email);

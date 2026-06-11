@@ -11,6 +11,13 @@ import com.luisdbb.tarea3AD2024base.modelo.Artista;
 import com.luisdbb.tarea3AD2024base.modelo.Espectaculo;
 import com.luisdbb.tarea3AD2024base.modelo.Numero;
 
+/**
+ * Repositorio de acceso a datos para números circenses.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Repository
 public interface NumeroRepository extends JpaRepository<Numero, Long> {
 

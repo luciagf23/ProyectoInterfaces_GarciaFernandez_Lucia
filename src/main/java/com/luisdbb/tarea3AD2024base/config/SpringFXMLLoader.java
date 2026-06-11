@@ -9,9 +9,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
- * Will load the FXML hierarchy as specified in the load method and register
- * Spring as the FXML Controller Factory. Allows Spring and Java FX to coexist
- * once the Spring Application context has been bootstrapped.
+ * Utilidad encargada de la carga de archivos FXML integrados con Spring
+ * Framework.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
  */
 @Component
 public class SpringFXMLLoader {

@@ -11,6 +11,13 @@ import com.luisdbb.tarea3AD2024base.modelo.Artista;
 import com.luisdbb.tarea3AD2024base.modelo.Numero;
 import com.luisdbb.tarea3AD2024base.repositorios.NumeroRepository;
 
+/**
+ * Servicio encargado de la gestión de números circenses.
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
+ */
+
 @Service
 public class NumeroService {
 

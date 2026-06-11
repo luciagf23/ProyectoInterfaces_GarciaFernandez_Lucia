@@ -1,6 +1,5 @@
 package com.luisdbb.tarea3AD2024base.modelo;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,8 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * @author Ram Alapure
- * @since 05-04-2017
+ * Entidad que representa un usuario del sistema.
+ * 
+ * Contiene la información necesaria para la gestión 
+ * interna de usuarios.
+ * 
+ * 
+ * @author Lucia Garcia
+ * @version 1.0
  */
 
 @Entity
@@ -26,15 +31,12 @@ public class User {
 
 	private String nacionalidad;
 
-
 	private String perfil;
-	
-	@Column(unique=true)
+
+	@Column(unique = true)
 	private String email;
-	
-	
+
 	private String password;
-	
 
 	public long getId() {
 		return id;
@@ -59,7 +61,6 @@ public class User {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
-
 
 	public String getPerfil() {
 		return perfil;
@@ -93,9 +94,5 @@ public class User {
 				+ ", getEmail()=" + getEmail() + ", getPassword()=" + getPassword() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
-	
-
-	
 
 }
